@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI 圣诞帽生成器
 
-## Getting Started
+这是一个基于 Next.js 和 Stable Diffusion 的 AI 圣诞帽生成器，可以为任何图片中的人物或动物添加圣诞帽装饰。
 
-First, run the development server:
+## 功能特点
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+🎄 自动为图片添加圣诞帽
+
+🎅 支持人物、动物等多种图片类型
+
+✨ 保持原始图片风格
+
+🎯 精确的帽子位置调整
+
+💫 支持自定义提示词
+
+## 本地开发
+
+### 环境要求
+
+Node.js 18+
+
+pnpm
+
+Stable Diffusion API Key
+
+### 安装步骤
+
+克隆项目
+
+```Bash
+git clone https://github.com/Jiangween/christmas-hat.git
+cd christmas-hat
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+安装依赖
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```Bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\3. 配置环境变量
 
-## Learn More
+```Bash
+cp .env.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+然后编辑 .env.local 文件，填入必要的配置：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```Bash
+SD_API_KEY=your_api_key
+SD_API_URL=your_api_url
+NEXT_PUBLIC_DOMAIN=your_domain
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+创建必要的目录
 
-## Deploy on Vercel
+```Bash
+mkdir -p public/images
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+启动开发服务器
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```Bash
+pnpm dev
+```
+
+## API 使用
+
+### 生成圣诞帽图片
+
+```Bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"imageUrl": "https://example.com/test.jpg","prompt": "可选的额外提示词"}' \
+  https://curuszqlvenx.sealoshzh.site/api/image
+```
+
+响应格式：
+
+```Bash
+{
+  "code": 200,
+  "statusText": "success",
+  "data": {
+    "url": "生成的图片URL"
+  }
+}
+```
+
+## 技术栈
+
+Next.js - React 框架
+
+Stable Diffusion - AI 图像生成
+
+Sharp - 图像处理
+
+Axios - HTTP 客户端
+
+## 注意事项
+
+建议上传清晰的图片
+
+图片会自动调整大小至 1024x1024
+
+## License
+
+MIT License - 详见 LICENSE 文件
